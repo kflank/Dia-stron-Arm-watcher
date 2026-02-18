@@ -37,6 +37,7 @@ class FreezeStateMachine:
                 elif now - self.state.recover_started_at >= self.recover_seconds:
                     self.state.status = "MOVING"
                     self.state.recover_started_at = None
+                    self.state.freeze_alert_sent_at = None
             else:
                 self.state.recover_started_at = None
             return self.state.status, should_alert
